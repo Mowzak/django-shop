@@ -1,0 +1,49 @@
+{% extends "./base.html" %}
+{%block title%}
+update
+{%endblock%}
+{%block main%}
+<div class="card card-success col-lg-10">
+    <div class="card-body">
+        <form method="post" enctype='multipart/form-data'>{%csrf_token%}
+            <label for="">شهر:</label>
+                <p>{{ checkobj.get_city_display }}</p>
+
+            <label for="">کاربر:</label>
+                <p>{{checkobj.user}}</p>
+
+            <label for="">آدرس:</label>
+                <p>{{checkobj.address}}</p>
+
+            <label for="">کد پستی:</label>
+                <p>{{checkobj.postcode}}</p>
+
+            <label for="">نام:</label>
+                <p>{{checkobj.firstname}}</p>
+
+            <label for="">نام خانوادگی:</label>
+                <p>{{checkobj.lastname}}</p>
+
+            <label for="">شماره تلفن:</label>
+                <p>{{checkobj.phone_number}}</p>
+
+            <label for="">شماره منزل:</label>
+                <p>{{checkobj.house_number}}</p>
+                
+            <label for="">کد رهگیری :</label>
+                <p>{{checkobj.tracing}}</p>
+
+            <label for=""> هزینه:</label>
+                <p>{{checkobj.price}}  تومان</p>
+
+            <label for="">وضعیت:</label>
+                {% if checkobj.valid%}
+                <p style="color: green;">بررسی شده</p>
+                {%else%}
+                <p style="color: red;">بررسی نشده</p>
+                {%endif%}
+                <button type="submit" name="id" value='{{checkobj.id}}' class="btn btn-primary">تغییر وضعیت</button>
+        </form>
+    </div>
+</div>
+{%endblock%}

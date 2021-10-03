@@ -1,0 +1,181 @@
+/* .like-content {
+    display: inline-block;
+    width: 100%;
+    margin: 40px 0 0;
+    padding: 40px 0 0;
+    font-size: 18px;
+    text-align: center;
+} */
+@font-face {
+    font-family: sahel;
+    src: url(Sahel.woff),url(Sahel.tff),url(Sahel.woff2),
+    url(Sahel.eot);
+  }
+
+.like-content span {
+    color: #9d9da4;
+    font-family: monospace;
+}
+
+.likestyle{
+    width: 40px;
+    border-radius: 100px;
+    font-size: 23px;
+}
+
+.like-content .btn-secondary:hover {
+    transform: translateY(-3px);
+}
+
+.like-content .btn-secondary .fa {
+    margin-right: 5px;
+}
+
+.animate-like {
+    animation-name: likeAnimation;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-duration: 0.65s;
+}
+
+@keyframes likeAnimation {
+    0% {
+        transform: scale(30);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.search-container{
+    padding-top: -10px;
+}
+
+.search-container:hover > .search-input{
+    width: 400px;
+}
+
+.search{
+    color: #000000;
+    position: absolute;
+    margin-right: -130px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-bottom: 2px solid #080506;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    width: 160px;
+    /* border: 2px solid rgb(43, 39, 39); */
+    /* background-color: rgb(158, 145, 129); */
+
+}
+
+.search-btn{
+    color: rgb(0, 0, 0);
+    background-color: white;
+    border : none;
+    position: absolute;
+}
+
+.likeo{
+    background-color: #b0b435;
+    color: #ffffff;
+    border:none
+}
+.wh{
+
+    color: #ffffff;
+    border:none
+}
+
+.tolo{
+    background-color: #000000;
+    position: relative;
+}
+.rast{
+    direction:rtl;
+    text-align:right;
+}
+
+
+.input-group {
+    position: relative !important;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;}
+
+.cityselect{
+    font-family: sahel;
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    font-size: 15px;
+    background-color: #fafafa;
+    border: none;
+}
+
+.sahelfont{
+    font-family: sahel;
+}
+
+.cutter{
+	word-break: break-word;
+}
+
+.aboutwid{
+    background-color: #fffafa;
+    padding: 50px;
+    border-radius: 100px;
+}
+
+
+
+.previous {
+    background-color: #b0b435;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 50px;}
+
+.previous:hover {
+    background-color: #7c8015;
+    color: black;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.nextman {
+    background-color: #b0b435;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 50px;}
+
+.nextman:hover {
+    background-color: #7c8015;
+    color: black;
+    padding: 10px;
+    border-radius: 50px;
+}
+.regurl{
+    color: white;
+    margin: 30px;
+    padding: 6px;
+    border-radius: 15px;
+    background: #b0b435;
+    font-size: 17px;
+}
+.loginurl{
+    color: white;
+    padding: 5px 14px;
+    border-radius: 15px;
+    background: #b0b435;
+    font-size: 16px;
+}
+.side-sef{
+    font-size: 25px;
+    color: white;
+}

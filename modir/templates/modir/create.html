@@ -1,0 +1,21 @@
+{% extends "./base.html" %}
+{%block title%}
+ساخت پست
+{%endblock%}
+{%block main%}
+{% load crispy_forms_tags %}
+{{form.media}}
+<div class="card card-success">
+    <div class="card-header">
+      <h3 class="card-title">جزئیات محصول</h3>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype='multipart/form-data'>{%csrf_token%}
+            {{form.as_p}}
+
+            <div class="card-footer">
+                <button type="submit" value="Save" class="btn btn-primary">ارسال</button>
+              </div>
+        </form>
+  </div>
+{%endblock%}

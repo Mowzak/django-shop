@@ -1,0 +1,20 @@
+{% extends 's/base.html'%}
+{% load widget_tweaks %}
+{% load tag %}
+{% block title%}
+گالری آرش
+{%endblock%}
+{%block main%}
+<div class="rast">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <div class="card-body">
+                <p style='font-size: 22px;'>{{name}} عزیز 
+                </p>
+                <p style='font-size: 22px;'>ممنون از توجه و اعتماد شما سفارش شما ثبت و به زودی رسیدگی میشود.اوقات خوشی رو براتون آرزو میکنیم.</p>
+                <p style='font-size: 18px;'>کد رهگیری شما: {{code}}</p>
+            </div>        
+        </div>
+    </div>
+</div>
+{%endblock%}

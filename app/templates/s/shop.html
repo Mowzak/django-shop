@@ -1,0 +1,330 @@
+{%load static%}
+{%load tag%}
+<!DOCTYPE html>
+<html lang="eng">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>گالری آرش خرید|فروشگاه</title>
+    {%block meta%}
+    <meta name="description" content=" گالری آرش اولین فروشگاه اینترنتی در حوزه فروش عینک های طبی،عینک آفتابی مردانه،زنانه و کودکانه همچنین انواع لنز های طبیعی و رنگی ، تعمیرات انواع عینک در همدان با بهترین قیمت و بالاترین کیفیت">
+    <meta name="keywords" content="عینک آفتابی همدان, لنز طبی همدان,لنز طبی رنگی همدان,عینک آفتابی مردانه،عینک آفتابی زنانه همدان،عینک آفتابی بچگانه همدان،تعمیرات عینک همدان،لنز همدان">
+    {%endblock%}
+
+    <!-- Site Icons -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{%static 'css/responsive.css'%}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{%static 'css/custom.css'%}">
+    <link rel="stylesheet" href="{%static 'css/my.css'%}">
+    <link href="{% static 'checkout/css/main.css' %}" rel="stylesheet" media="all">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">>
+                    <div class="right-phone-box">
+                    </div>
+                    <div class="our-link">
+                        <ul>
+                            <li><a href='https://goo.gl/maps/fzH2drEVoE93FpdW6'><i class="fas fa-location-arrow"></i> مکان ما </a></li>
+                            <li><a href="tel:+98186716654"><i class="fas fa-headset"></i> ارتباط با ما</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="login-box">
+                        {% if request.user.is_anonymous%}
+                            <li><a class='regurl' href="{%url 'signup'%}">ثبت نام</a></li>
+                            <li><a class='loginurl' href="{%url 'signin'%}">ورود</a></li>
+                        {%endif%}
+
+                    </div>
+                    <div class="text-slid-box">
+                        <div id="offer-box" class="carouselTicker">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item"><a class="nav-link" href="{%url 'us'%}">درباره ی ما</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{%url 'shop'%}">فروشگاه</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{%url 'co'%}">وبلاگ ها</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{%url 'prof'%}">سبد خرید</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <li class="side-menu">
+                            <a href="#">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span class="badge">{{request.user|shoped}}</span>
+                                <p>سبد من</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+            </div>
+            <div class="side">
+                <p class='rast side-sef' >سبد سفارش</p>
+                <hr style="background-color: white;">
+                <li class="cart-box">
+                    <ul class="cart-list">
+                        {% if request.user.is_anonymous%}
+                            <p>هیچ محصولی دیگر در سبد سفارش شما نیست</p>
+                        {%endif%}
+                        {%for i in request.user|shoped_p %}
+                        <li>
+                            <a href="{{i.image2.url}}" class="image"></a>
+                            <h6><a href="{%url 'shopdet' i.id %}">{{i.title}}</a></h6>
+                            <p> <span class="price">تومان{{i.price}}</span></p>
+                        </li>
+                        {%endfor%}
+                    </ul>
+                </li>
+            </div>
+        </nav>
+    </header>
+    <!-- End Main Top -->
+        <!-- Start All Title Box -->
+        <div class="all-title-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Shop</h2>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{%url 'home'%}">Home</a></li>
+                            <li class="breadcrumb-item active">Shop</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End All Title Box -->
+
+        <!-- Start Shop Page  -->
+        <form method="POST">
+            {%csrf_token%}
+            <div class="shop-box-inner rast">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                            <div class="right-product-box">
+                                <div class="product-item-filter row">
+                                    <div class="col-12 col-sm-8 text-center text-sm-left">
+                                        <div class="toolbar-sorter-right">
+                                            <div>
+                                                <select name='drop1' class="selectpicker show-tick form-control">
+                                                    <option value="1">قیمت(صعودی)</option>
+                                                    <option value="2">قیمت(نزولی)</option>
+                                                </select>
+                                                    <div class="tolo">
+                                                        <input type="text" name="search" placeholder="جستجو..." class="search">
+                                                        <button type="submit" class="search-btn">
+                                                                <i class="fas fa-search"></i>      
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="product-categorie-box">
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                            <div class="row">
+                                                {%for i in glass%}
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <button class="sale" value="{{i.id}}" name="add_card"
+                                                                    type=" submit ">افزودن به سبد خرید</button>
+                                                            </div>
+                                                            <img src="{{i.image.url}}" class="img-fluid" alt="{{i.bet}}">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="{{i.id}}" data-toggle="tooltip"
+                                                                            data-placement="right" title="View"><i
+                                                                                class="fas fa-eye"></i></a></li>
+
+                                                                    </form>
+                                                                    
+                                                                    <form action="{%url 'like' i.id%}" method="post">
+                                                                        
+                                                                        {%csrf_token%}
+                                                                        <li><button type=submit name='id' class='likeo' value='{{i.id}}'data-toggle="tooltip"
+                                                                            data-placement="right"
+                                                                            title="Like"> {{i.id|liked}} <i
+                                                                                class="far fa-heart"></i></button></li>
+                                                                    </form>
+
+                                                                </ul>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text ">
+                                                            <h4>{{i.title|truncatechars:32}}</h4>
+                                                            <h5> {{i.price}} تومان</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {%endfor%}
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel " class="tab-pane fade " id="list-view ">
+                                            <div class="list-view-box ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%if glass.has_next%}
+                                    <a href="{%url 'shop_id' glass.next_page_number %}" class="nextman">&laquo صفحه بعد</a>
+                                {%endif%}
+                                {%if glass.has_previous%}
+                                    <a href="{%url 'shop_id' glass.previous_page_number %}"  class="previous">صفحه قبل &raquo</a>
+                                {%endif%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    <footer class='rast'>
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>ساعات کاری</h3>
+                            <ul class="list-time">
+                                <li>شنبه تا جمعه :9 صبح تا 2 ظهر - 4 بعدازظهر تا 10 شب</li>
+    
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>شبکه های اجتماعی</h3>
+                            <p>ما را در شبکه های اجتماعی دنبال کنید نا از آخرین اخبار گالری آرش با خبر بشید.</p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>دربار‌ه‌ی گالری آرش</h4>
+                            <a href="{%url 'us'%}"><p>{{request.user|ustem|truncatewords:80}}</p></a>
+    
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>ارتباط با ما</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>آدرس: همدان، بالاتر از چهار راه شهناز، جنب پارک زنبغ</p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>شماره‌ی تماس: <a href="tel:+9802138215735">081-38215735</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+        
+        <div class="footer-copyright ">
+            <p class="footer-company ">گالری آرش&copy; 2021
+            </p>
+        </div>
+        
+
+        <a href="# " id="back-to-top " title="Back to top " style="display: none; ">&uarr;</a>
+
+        <!-- ALL JS FILES -->
+        <script src="{%static 'js/jquery-3.2.1.min.js'%} "></script>
+        <script src="{%static 'js/popper.min.js'%} "></script>
+        <script src="{%static 'js/bootstrap.min.js'%} "></script>
+        <!-- ALL PLUGINS -->
+        <script src="{%static 'js/jquery.superslides.min.js'%} "></script>
+        <script src="{%static 'js/bootstrap-select.js'%} "></script>
+        <script src="{%static 'js/inewsticker.js'%} "></script>
+        <script src="{%static 'js/bootsnav.js.'%} "></script>
+        <script src="{%static 'js/images-loded.min.js'%} "></script>
+        <script src="{%static 'js/isotope.min.js'%} "></script>
+        <script src="{%static 'js/owl.carousel.min.js'%} "></script>
+        <script src="{%static 'js/baguetteBox.min.js'%} "></script>
+        <script src="{%static 'js/jquery-ui.js'%} "></script>
+        <script src="{%static 'js/jquery.nicescroll.min.js'%} "></script>
+        <script src="{%static 'js/form-validator.min.js'%} "></script>
+        <script src="{%static 'js/contact-form-script.js'%} "></script>
+        <script src="{%static 'js/custom.js'%} "></script>
+</body>
+
+</html>

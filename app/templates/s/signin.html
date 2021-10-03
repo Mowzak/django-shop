@@ -1,0 +1,43 @@
+{% extends 's/base.html'%}
+{% load widget_tweaks %}
+{% load tag %}
+{% block title%}
+ورود گالری آرش
+{%endblock%}
+{%block main%}
+<div class="rast">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <div class="card-body">
+                <h2 class="title">وارد شوید</h2>
+                <form method="POST">{%csrf_token%}
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">نام کاربری</label>
+                                {{form.username|add_class:'input--style-4'}}
+                            </div>
+                        </div>
+                    </div>                 
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">رمز عبور</label>
+                                {{form.password|add_class:'input--style-4'}}
+                            </div>
+                        </div>
+                    </div>        
+                    <a href="{%url 'signup'%}">اکانت ندارید؟! همین حالا ثبت نام کن.</a>
+                    <p style='background-color: red;font-size: large; '>{{eror}}</p>
+					
+                    <div class="input-group">
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" value="Send message" type="submit">تایید</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

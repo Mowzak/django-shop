@@ -1,0 +1,102 @@
+{%extends 's/base.html'%}
+{%load static%}
+{%block title%}
+کارت من گالری آرش
+{%endblock%}
+{%block main%}
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+    <h2 class="rtl large"> {{request.user}} خوش آمدید</h2>
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2><a class='wh' href="{%url 'logout'%}">logout</a></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Cart  -->
+    <div class="cart-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-main table-responsive">
+                        <table class="table rtl">
+                            <thead>
+                                <tr>
+                                    <th>عکس</th>
+                                    <th>نام محصول</th>
+                                    <th>قیمت</th>
+                                    <th>حذف</th>
+                                </tr>
+                            </thead>
+                            <form action="" method="post">
+                                {%csrf_token%} {%for i in produc%}
+                                <tbody>
+                                    <tr>
+                                        <td class="thumbnail-img">
+                                            <a href="#">
+                                                <img class="img-fluid" src="{{i.image.url}}" />
+                                            </a>
+                                        </td>
+                                        <td class="name-pr">
+                                            <a href="{%url 'shopdet' i.id%}">
+									{{i.title}}
+								</a>
+                                        </td>
+                                        <td class="price-pr">
+                                            <p>${{i.price}}</p>
+                                            <td class="remove-pr">
+                                                <button class="fas fa-times" type="submit" value="{{i.id}}" name='remove_btn'></button>
+                                                </a>
+                                            </td>
+                                    </tr>
+                                    {%endfor%}
+                            </form>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col-lg-8 col-sm-12"></div>
+                <div class="col-lg-4 col-sm-12">
+                    <div style="direction:rtl;text-align:right;" class="order-box">
+                        <h3>رسید خرید</h3>
+                        <div class="d-flex">
+                            <h4>تعداد محصول</h4>
+                            <div class="ml-auto font-weight-bold">{{tedad}}</div>
+                        </div>
+                        <hr class="my-1"> {%for i in produc%}
+                        <div class="d-flex">
+                            <h4>{{i.title}}</h4>
+                            <div class="ml-auto font-weight-bold"> {{i.price}}</div>
+                        </div>
+                        {%endfor%}
+                        <hr>
+                        <div class="d-flex gr-total">
+                            <h5>جمع قیمت ها</h5>
+                            <div style="position: absolute;right: 300px;" class="ml-auto h5">{{total}}</div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-12 d-flex shopping-box"><a href="{%url 'checkout'%}" class="ml-auto btn hvr-hover">ارسال جزئیات</a> </div>
+            </div>
+
+        </div>
+    </div>
+{%endblock%}

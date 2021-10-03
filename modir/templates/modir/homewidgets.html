@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+{%block tit%}صفحه ی اصلی{%endblock%}
+{%block main%}
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+            <button class='btn-warning'><a style='color: black;'href="{%url 'homewidget'%}">افزودن</a></button>
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>متن</th>
+                        <th>متن دکمه</th>
+                        <th>عکس</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {%for i in checkobj%}
+                            <tr>
+                                <td><a href="">{{i.id}}</a> </td>
+                                <td>{{i.text}}</td>
+                                <td>{{i.textb}}</td>
+                                <td>{{i.img|safe}}</td>
+                                
+                                <td><a href="delete/{{i.id}}" class="fas fa-times clear"></a></td>
+                            </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

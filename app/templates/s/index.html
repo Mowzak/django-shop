@@ -1,0 +1,161 @@
+{%extends 's/base.html'%}
+{%load static%}
+
+{%block title%}
+بزرگترین فروشگاه اینترنتی عینک و لنز همدان| گالری آرش
+{%endblock%}
+{%block meta%}
+    <meta name="description" content="گالری آرش اولین فروشگاه اینترنتی عینک و لنز در همدان با انواع عینک های آفتابی و طبی برند لنز های طبیعی و رنگی همدان ساخت و تعمیرات عینک همدان">
+    <meta name="keywords" content="عینک آفتابی همدان, لنز طبی همدان,لنز طبی رنگی همدان,عینک آفتابی مردانه،عینک آفتابی زنانه همدان،عینک آفتابی بچگانه همدان،تعمیرات عینک همدان،لنز رنگی همدان،لنز طبی همدان">
+    <meta property="og:title" content="بزرگترین فروشگاه اینترنتی عینک و لنز همدان"/>
+    <meta property="og:url" content="http://arashgallery.ir/"/>
+    <meta property="og:site_name" content="گالری آرش"/>
+    <meta property="og:description" content="خرید انواع عینک اصل و اورجینال در انواع رنگ قیمت گالری آرش">
+    <meta property="og:type" content="website">
+
+    <meta property="og:image" content="https://trendyted.com/img/ترندی-تد-logo-1559488591.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#38ab5f">
+    <meta name="msapplication-navbutton-color" content="#38ab5f">
+{%endblock%}
+
+{%block main%}
+{%load tag%}
+
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="slides-shop" class="cover-slides rast">
+        <ul class="slides-container">
+            {%for i in arash%}
+            <li class="text-center">
+                <img src="{{i.image.url}}" alt="گالری آرش">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>گالری آرش</strong></h1>
+                            <p class="m-b-40">{{i.text}}</p>
+                            <p><a class="btn hvr-hover" href="/shop/">{{i.textb}}</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {%endfor%}
+        </ul>
+        <div class="slides-navigation">
+            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        </div>
+    </div>
+
+    <div class="categories-shop rast">
+        <div class="container">
+            <div class="row">
+                {%for i in se%}
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{{i.image.url}}" alt="{{i.bet}}" />
+                        <a class="btn hvr-hover" href="shop/{{i.id}}">{{i.title}}</a>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+
+    <div class="products-box rast">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1>عینک های منتخب </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="special-menu text-center">
+                        <div class="button-group filter-button-group">
+                            <button data-filter=".best-seller">پر فروش ها</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row special-list">
+                {%for i in favs%}
+                <div class="col-lg-3 col-md-6 special-grid top-featured">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <img src="{{i.image.url}}" class="img-fluid" alt="{{i.bet}}">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="shop/{{i.id}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>{{i.title}}</h4>
+                            <h5>{{i.price}} تومان</h5>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+
+    <div class="latest-blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1>اخرین محصولات</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="direction:rtl;text-align:right;">
+                {%for i in blog%}
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="blog-box">
+                        <div class="blog-img">
+                            <img class="img-fluid" src="{{i.image.url}}" alt="{{i.bet}}" />
+                        </div>
+                        <div class="blog-content">
+                            <div class="title-blog">
+                                <h3>{{i.title|truncatechars:27}}</h3>
+                                <p class="cutter">{{ i.bet }}</p>
+                            </div>
+                            <ul class="option-blog">
+                                <li><a href="shop/{{i.id}}"><i class="fas fa-eye"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+
+    <div class="instagram-box">
+        <div class="main-instagram owl-carousel owl-theme">
+            {%for i in all%}
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{{i.image.url}}" alt="{{i.bet}}" />
+                    <div class="hov-in">
+                        
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+
+{%endblock%}

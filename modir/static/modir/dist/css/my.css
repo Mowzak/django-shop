@@ -1,0 +1,42 @@
+@font-face {
+    font-family: my;
+    src: url(Sahel.woff) format('woff'),
+     url(Sahel.eot) format('eot'),
+    url(Sahel.ttf) format('ttf');
+  }
+body {
+    margin: 0;
+    font-family: my !important;
+    font-size: 1rem !important;
+    font-weight: 200 !important;
+    line-height: 0.5;
+    text-align: right;
+    background-color: rgb(211, 184, 184) !important;
+}
+.card-title {
+    float: right !important;}
+
+
+[class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active, [class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:focus, [class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:hover {
+        background-color: #343a40 !important;
+        color: white !important;}
+
+.form-group {
+    position: absolute;}
+.custom-control-label::before, .custom-file-label, .custom-select {
+    position: relative;
+    margin-right: 150px;
+    margin-top: -50px;}
+
+.base{
+    position: relative;
+}
+
+.mag{
+    padding-bottom: 90px;
+    position: absolute;
+}
+.clear{
+    background-color: white !important;
+    border: none;
+}

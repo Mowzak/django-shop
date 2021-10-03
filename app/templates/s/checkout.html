@@ -1,0 +1,85 @@
+{% extends 's/base.html'%}
+{% load widget_tweaks %}
+{% load tag %}
+{% block title%}
+جزئیات گیرنده|گالری آرش
+{%endblock%}
+{%block main%}
+<div class="rast">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <div class="card-body">
+                <h2 class="title">جزئیات گیرنده</h2>
+                <form method="POST">{%csrf_token%}
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">نام</label>
+                                <!-- <input class="input--style-4" type="text" name="name"> -->
+                                {{form.firstname|add_class:'input--style-4'}}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">نام خانوادگی</label>
+                                {{form.lastname|add_class:'input--style-4'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">آدرس</label>
+                                {{form.address|add_class:'input--style-4'}}
+                            </div>
+                        </div>
+                    </div>                 
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">کد پستی</label>
+                                {{form.postcode|add_class:'input--style-4'}}
+                            </div>
+                        </div>
+                        <div class='col-6'>
+                            <label class="label">شهرستان</label>
+                                {{form.city|add_class:'cityselect'}}
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">تلفن همراه</label>
+                                {{form.phone_number|add_class:'input--style-4'}}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">تلفن ثابت</label>
+                                {{form.house_number|add_class:'input--style-4 '}}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div>
+                        <label style='font-size: larger;' class="label">جمع قیمت</label>
+                        <div>
+                            {{request.user|total}}
+                        </div>
+
+                    </div>
+                    {%for i in error%}
+                    <p style='background-color: red;font-size: large;'>{{i}}</p>
+                    {%endfor%}
+                    <div class="input-group">
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" value="Send message" type="submit">تایید</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

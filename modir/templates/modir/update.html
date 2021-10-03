@@ -1,0 +1,117 @@
+{% extends "./base.html" %}
+
+{%block main%}
+{% load crispy_forms_tags %}
+{% load tag %}
+{{form.media}}
+<div class="card card-success col-lg-10">
+    <div class="card-body">
+        <form method="post" enctype='multipart/form-data'>{%csrf_token%}
+            {{form.as_p}}
+            <div class="card-footer">
+                <button type="submit" value="Update" class="btn btn-primary">ارسال</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">people who saved</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>                  
+                            <tr>
+                            <th style="width: 10px">#</th>
+                            <th>users</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%with a=request.path|saves c=0 %}
+                                {%for i in a%}
+                                    <tr>
+                                        <td>{{ forloop.counter }}.</td>
+                                        <td>{{i.user}}</td>
+                                    </tr>
+                                {%endfor%}
+                            {%endwith%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">people who liked</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>                  
+                            <tr>
+                            <th style="width: 10px">#</th>
+                            <th>users</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%with a=request.path|likes%}
+                                {%for i in a%}
+                                    <tr>
+                                    <td>{{ forloop.counter }}.</td>
+                                    
+                                    <td>{{i}}</td>
+                                    </tr>
+                                {%endfor%}
+                            {%endwith%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<form action="{% url 'comment'%}" method="post">{%csrf_token%}
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">people who comment</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>                  
+                        <tr>
+                        <th style="width: 10px">#</th>
+                        <th>comment</th>
+                        <th>users</th>
+                        <th>status</th>
+                        <th>check</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%with a=request.path|comment%}
+                            {%for i in a%}
+                                <tr>
+                                <td>{{ forloop.counter }}.</td>
+                                
+                                <td>{{i.comment}}</td>
+                                <td>{{i.user}}</td>
+                                <td>{{i.active}}</td>
+                                <td><input type="checkbox" name='{{i.id}}'></td>
+                                </tr>
+                            {%endfor%}
+                        {%endwith%}
+                    </tbody>
+                </table>
+                <input class="btn btn-info" type="submit" value='تعویض'></input>
+            </div>
+        </div>
+    </div>
+    
+</form>
+{%endblock%}

@@ -1,0 +1,53 @@
+{% extends 's/base.html'%}
+{% load widget_tweaks %}
+{% load tag %}
+{% block title%}
+ثبت نام گالری آرش
+{%endblock%}
+{%block main%}
+<div class="rast">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <div class="card-body">
+                <h2 class="title">ثبت‌نا‌م کنید</h2>
+                <form method="POST">{%csrf_token%}
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">نام کاربری</label>
+                                {{form.username|add_class:'input--style-4'}}
+                            </div>
+                        </div>
+                    </div>                 
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">رمز عبور</label>
+                                {{form.password1|add_class:'input--style-4'}}
+                            </div>
+                        </div>
+                    </div>        
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">تکرار رمز عبور</label>
+                                {{form.password2|add_class:'input--style-4'}}
+                            </div>
+                        </div>
+                    </div>
+
+					<a href="{%url 'signin'%}">قبلا ثبت‌نام کردید؟! وارد شوید.</a>
+                    <p style='background-color: red;font-size: large; '>{{error|safe}}</p>
+
+
+                    <div class="input-group">
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" value="Send message" type="submit">تایید</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

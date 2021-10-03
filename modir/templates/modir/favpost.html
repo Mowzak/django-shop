@@ -1,0 +1,15 @@
+{% extends "./base.html" %}
+
+{%block main%}
+
+<div class="card card-success col-lg-10">
+    <div class="card-body">
+        <form method="post" enctype='multipart/form-data'>{%csrf_token%}
+            {{form.as_p}}
+            <div class="card-footer">
+                <button type="submit" value="Update" class="btn btn-primary">ارسال</button>
+            </div>
+        </form>
+    </div>
+</div>
+{%endblock%}

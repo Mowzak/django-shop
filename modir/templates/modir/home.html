@@ -1,0 +1,65 @@
+{% extends "./base.html" %}
+{%block tit%}صفحه ی اصلی{%endblock%}
+{%block main%}
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <form method="post">{%csrf_token%}
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="search" class="form-control float-right" placeholder="Search">
+
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                </div>
+                
+              </div>
+            </div>
+          
+            <div class="form-group col-6">
+              <select name="select" class="custom-select">
+                <option id='1'>قیمت</option>
+                <option id='2'>شناسه</option>
+                <option id='3'>عنوان</option>
+              </select>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="radio1">
+              <label class="form-check-label">نزولی</label>
+            <div></div></div>
+          </div>
+        </form>
+
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>شناسه</th>
+                <th>عنوان</th>
+                <th>تصویر</th>
+                <th>قیمت</th>
+                <th>متن</th>
+              </tr>
+            </thead>
+            <tbody>
+                {%for i in glass%}
+                    <tr>
+                        <td><a href="update/{{i.id}}">{{i.id}}</a> </td>
+                        <td>{{i.title}}</td>
+                        <td><img style="width: 100px;height: 50px;" src="{{i.image.url}}"></td>
+                        <td>{{i.price}}</td>
+                        <td>{{i.text|striptags|truncatechars:10}}</td>
+                        <td><a href="delete/{{i.id}}" class="fas fa-times clear"></a></td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+{%endblock%}
